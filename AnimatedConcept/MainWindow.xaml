@@ -1,0 +1,74 @@
+﻿<Window x:Class="AnimatedConcept.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimatedConcept"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="3" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" CornerRadius="6" BorderBrush="MediumPurple">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation  Storyboard.TargetProperty="Width" To="130" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase></CircleEase>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" To="150" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase></CircleEase>
+                                    </DoubleAnimation.EasingFunction>
+
+                                </DoubleAnimation>
+                                <ColorAnimation To="MediumPurple" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" Duration="0:0:0.3"></ColorAnimation>
+                                <ColorAnimation To="White" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" Duration="0:0:0.3"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width" To="100" Duration="0:0:0.3"></DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetProperty="Height" To="120" Duration="0:0:0.3"></DoubleAnimation>
+                                <ColorAnimation To="White" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" Duration="0:0:0.3"></ColorAnimation>
+                                <ColorAnimation To="MediumPurple" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" Duration="0:0:0.3"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+
+
+    <Grid Background="#f1f3f5">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Height="120" Background="White" Width="100" Margin="3" FontSize="18" FontWeight="Bold" Content="Hétfő" Foreground="MediumPurple"></Button>
+            <Button  Height="120" Background="White" Width="100" Margin="3" FontSize="18" FontWeight="Bold" Content="Kedd"  Foreground="MediumPurple"></Button>
+            <Button  Height="120" Background="White" Width="100" Margin="3" FontSize="18" FontWeight="Bold" Content="Szerda"  Foreground="MediumPurple"></Button>
+            <Button  Height="120" Background="White" Width="100" Margin="3" FontSize="18" FontWeight="Bold" Content="Csütörtök"  Foreground="MediumPurple" ></Button>
+            <Button  Height="120" Background="White" Width="100" Margin="3" FontSize="18" FontWeight="Bold" Content="Péntek"  Foreground="MediumPurple"></Button>
+
+        </StackPanel>
+        <Label x:Name="label_temp" Content="" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="173,256,0,0"></Label>
+    </Grid>
+</Window>
